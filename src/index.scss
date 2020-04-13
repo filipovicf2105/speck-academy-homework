@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+p {
+  line-height: 150%;
+  font-size: 18px;
+}
+
+.Button {
+  display: block;
+  width: 160px;
+  line-height: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #c59613;
+  border-radius: 6px;
+  font-weight: 700;
+  color: #fff;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    background-color: #9e7911;
+  }
+}

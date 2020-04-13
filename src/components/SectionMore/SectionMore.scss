@@ -1,0 +1,28 @@
+.SectionMore {
+    padding: 70px 0;
+    overflow-y: hidden;
+
+    &-About {
+        margin-bottom: 70px;
+    }
+    
+    &-Text {
+        max-width: 750px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    &-About .Button {
+        margin: 0 auto;
+    }
+    
+    &-CardsContainer {
+        width: 1280px;
+        margin: 0 auto;
+    }
+    
+    &-CardsContainer::after {
+        clear: both;
+    }
+}
