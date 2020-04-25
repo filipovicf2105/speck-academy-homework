@@ -1,4 +1,5 @@
 .SectionInfo {
+    position: relative;
     display: block;
     max-width: 350px;
     margin: 0 auto;
@@ -9,7 +10,7 @@
         margin-bottom: 40px;
     }
     
-    @media only screen and (min-width: 576px){
+    @media only screen and (min-width: 576px) {
         & .InfoBox {
             margin: inherit;
         } 
@@ -22,13 +23,13 @@
         }
     }
     
-    @media only screen and (min-width: 768px){
+    @media only screen and (min-width: 768px) {
         & {
             grid-template-columns: repeat(3, 1fr);
         }
     }
     
-    @media only screen and (min-width: 1024px){
+    @media only screen and (min-width: 1024px) {
         & {
             gap: 30px;
             padding: 0;

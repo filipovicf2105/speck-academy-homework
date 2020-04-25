@@ -1,5 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
+import {
+    HeaderMain,
+    HeaderInner,
+    HeaderLogo,
+    HeaderLogoImage,
+    HeaderNav,
+    HeaderNavList,
+    HeaderNavListItem,
+    HeaderNavLink
+} from './HeaderStyle';
 
 import Logo from '../../assets/images/logo.png';
 
@@ -14,37 +25,50 @@ const links = {
 
 const Header = () => {
     return (
-        <header className="HeaderMain">
-            <div className="HeaderMain-Inner">
-                <Link to="/" className="LogoContainer">
-                    <img className="LogoContainer-Image" src={Logo} alt="Logo" />
-                </Link>
-                <nav className="HeaderMain-Nav">
-                    <ul className="HeaderMain-NavList">
-                        <li className="HeaderMain-NavListItem">
-                            <Link className="HeaderMain-NavLink" to="/speakers">
-                                {links.speakers}
-                            </Link>
-                        </li>
-                        <li className="HeaderMain-NavListItem">
-                            <Link className="HeaderMain-NavLink" to="/events">
-                                {links.events}
-                            </Link>
-                        </li>
-                        <li className="HeaderMain-NavListItem">
-                            <Link className="HeaderMain-NavLink" to="/">
-                                {links.contact}
-                            </Link>
-                        </li>
-                        <li className="HeaderMain-NavListItem">
-                            <Link className="HeaderMain-NavLink" to="/">
-                                {links.apply}
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        <HeaderMain>
+            <HeaderInner>
+                <NavLink to="/">
+                    <HeaderLogo>
+                        <HeaderLogoImage
+                            src={Logo}
+                            alt="Logo"
+                        />
+                    </HeaderLogo>
+                </NavLink>
+                <HeaderNav>
+                    <HeaderNavList>
+                        <HeaderNavListItem>
+                            <HeaderNavLink>
+                                <NavLink to="/speakers" activeClassName="ActiveLink">
+                                    {links.speakers}
+                                </NavLink>
+                            </HeaderNavLink>
+                        </HeaderNavListItem>
+                        <HeaderNavListItem>
+                            <HeaderNavLink>
+                                <NavLink to="/events" activeClassName="ActiveLink">
+                                    {links.events}
+                                </NavLink>
+                            </HeaderNavLink>
+                        </HeaderNavListItem>
+                        <HeaderNavListItem>
+                            <HeaderNavLink>
+                                <NavLink to="/">
+                                    {links.contact}
+                                </NavLink>
+                            </HeaderNavLink>
+                        </HeaderNavListItem>
+                        <HeaderNavListItem>
+                            <HeaderNavLink>
+                                <NavLink to="/">
+                                    {links.apply}
+                                </NavLink>
+                            </HeaderNavLink>
+                        </HeaderNavListItem>
+                    </HeaderNavList>
+                </HeaderNav>
+            </HeaderInner>
+        </HeaderMain>
     );
 }
 

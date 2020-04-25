@@ -34,7 +34,7 @@ const InfoBox = (props) => {
                     <h2 className="InfoBox-Title">{props.title}</h2>
                 </div>
                 {displaySubheader()}
-                <p className="InfoBox-About">{props.children}</p>
+                <p className="InfoBox-About">{props.about}</p>
                 <div className="InfoBox-Footer">
                     <a href="#" className="InfoBox-ButtonJoin">{props.type === "speaker" ? "Prati sudionika" : "Prijavi se na predavanje"}</a>
                 </div>
