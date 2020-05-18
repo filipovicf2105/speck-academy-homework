@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
+import { getEvents } from '../api/events';
 import PageTitle from '../components/PageTitle/PageTitle';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SectionInfo from '../components/SectionInfo/SectionInfo';
 import InfoBox from '../components/InfoBox/InfoBox';
 import LoaderComponent from '../components/LoaderComponent/LoaderComponent';
 
-import eventsMock from '../lib/events';
-
 const Events = () => {
     const [search, setSearch] = useState('');
     const [events, setEvents] = useState('');
 
     useEffect(() => {
-        setTimeout(() => {
-            setEvents(eventsMock);
-        }, 1000);
+        fetchEvents();
     }, []);
+
+    const fetchEvents = async () => {
+        try {
+            const result = await getEvents(localStorage.getItem('token').split(' ')[1]);
+            result.events
+                ? setEvents(result.events)
+                : console.log(result);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const showEvents = () => {
         return events.filter((event) => (

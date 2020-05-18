@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderMain = styled.header`
     position: fixed;
@@ -53,7 +54,7 @@ export const HeaderNavListItem = styled.li`
     }
 `;
 
-export const HeaderNavLink = styled.div`
+export const HeaderNavLink = styled(NavLink)`
     font-size: 17px;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -62,6 +63,10 @@ export const HeaderNavLink = styled.div`
     color: #000;
 
     &:hover {
+        color: #c59613;
+    }
+
+    &.${props => props.activeClassName} {
         color: #c59613;
     }
 `;

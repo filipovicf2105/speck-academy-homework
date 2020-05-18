@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
+import { getSpeakers } from '../api/speakers';
 import PageTitle from '../components/PageTitle/PageTitle';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SectionInfo from '../components/SectionInfo/SectionInfo';
 import InfoBox from '../components/InfoBox/InfoBox';
 import LoaderComponent from '../components/LoaderComponent/LoaderComponent';
 
-import speakersMock from '../lib/speakers';
-
 const Speakers = () => {
     const [search, setSearch] = useState('');
     const [speakers, setSpeakers] = useState('');
 
     useEffect(() => {
-        setTimeout(() => {
-            setSpeakers(speakersMock);
-        }, 1000);
+        fetchSpeakers();
     }, []);
+
+    const fetchSpeakers = async () => {
+        try {
+            const result = await getSpeakers(localStorage.getItem('token').split(' ')[1]);
+            result.speakers
+                ? setSpeakers(result.speakers)
+                : console.log(result);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const showSpeakers = () => {
         return speakers.filter((speaker) => (

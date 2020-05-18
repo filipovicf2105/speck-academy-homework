@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import { AuthContext } from '../../context/AuthContext';
 import {
     HeaderMain,
     HeaderInner,
@@ -11,19 +12,24 @@ import {
     HeaderNavListItem,
     HeaderNavLink
 } from './HeaderStyle';
-
 import Logo from '../../assets/images/logo.png';
-
-import './Header.scss';
 
 const links = {
     speakers: 'Sudionici',
     events: 'Događanja',
-    contact: 'Kontakt',
-    apply: 'Prijavi se'
+    register: 'Registracija',
+    login: 'Prijava',
+    logout: 'Logout'
 }
 
 const Header = () => {
+    const auth = useContext(AuthContext);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        auth.logout();
+    }
+
     return (
         <HeaderMain>
             <HeaderInner>
@@ -38,33 +44,34 @@ const Header = () => {
                 <HeaderNav>
                     <HeaderNavList>
                         <HeaderNavListItem>
-                            <HeaderNavLink>
-                                <NavLink to="/speakers" activeClassName="ActiveLink">
-                                    {links.speakers}
-                                </NavLink>
+                            <HeaderNavLink to="/speakers" activeClassName="ActiveClass">
+                                {links.speakers}
                             </HeaderNavLink>
                         </HeaderNavListItem>
                         <HeaderNavListItem>
-                            <HeaderNavLink>
-                                <NavLink to="/events" activeClassName="ActiveLink">
-                                    {links.events}
-                                </NavLink>
+                            <HeaderNavLink to="/events" activeClassName="ActiveClass">
+                                {links.events}
                             </HeaderNavLink>
                         </HeaderNavListItem>
-                        <HeaderNavListItem>
-                            <HeaderNavLink>
-                                <NavLink to="/">
-                                    {links.contact}
-                                </NavLink>
-                            </HeaderNavLink>
-                        </HeaderNavListItem>
-                        <HeaderNavListItem>
-                            <HeaderNavLink>
-                                <NavLink to="/">
-                                    {links.apply}
-                                </NavLink>
-                            </HeaderNavLink>
-                        </HeaderNavListItem>
+                        {!auth.isLoggedIn
+                            ? <>
+                                <HeaderNavListItem>
+                                    <HeaderNavLink to="/register" activeClassName="ActiveClass">
+                                        {links.register}
+                                    </HeaderNavLink>
+                                </HeaderNavListItem>
+                                <HeaderNavListItem>
+                                    <HeaderNavLink to="/login" activeClassName="ActiveClass">
+                                        {links.login}
+                                    </HeaderNavLink>
+                                </HeaderNavListItem>
+                            </>
+                            : <HeaderNavListItem>
+                                <HeaderNavLink to="/logout" onClick={handleLogout}>
+                                    {links.logout}
+                                </HeaderNavLink>
+                            </HeaderNavListItem>
+                        }
                     </HeaderNavList>
                 </HeaderNav>
             </HeaderInner>
