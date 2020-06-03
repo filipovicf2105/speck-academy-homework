@@ -23,11 +23,11 @@ const links = {
 }
 
 const Header = () => {
-    const auth = useContext(AuthContext);
+    const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        auth.logout();
+        setIsLoggedIn(false);
     }
 
     return (
@@ -53,7 +53,7 @@ const Header = () => {
                                 {links.events}
                             </HeaderNavLink>
                         </HeaderNavListItem>
-                        {!auth.isLoggedIn
+                        {!isLoggedIn
                             ? <>
                                 <HeaderNavListItem>
                                     <HeaderNavLink to="/register" activeClassName="ActiveClass">

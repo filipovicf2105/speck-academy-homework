@@ -19,7 +19,7 @@ import {
 const LoginForm = () => {
     const { register, handleSubmit, errors } = useForm();
     const [error, setError] = useState(false);
-    const auth = useContext(AuthContext);
+    const { setIsLoggedIn } = useContext(AuthContext);
     const history = useHistory();
 
     const onSubmit = async (data) => {
@@ -27,7 +27,7 @@ const LoginForm = () => {
             const result = await loginUser(data);
             if (result.token) {
                 localStorage.setItem('token', `Bearer ${result.token}`);
-                auth.login();
+                setIsLoggedIn(true);
                 history.push('/');
             } else {
                 setError(true);
@@ -58,7 +58,7 @@ const LoginForm = () => {
                     name="password"
                     ref={register({ required: true })}
                     type="password" />
-                    {errors.password && <FormInputValidation>Password is required</FormInputValidation>}
+                {errors.password && <FormInputValidation>Password is required</FormInputValidation>}
             </FormRow>
             <FormButtonRow>
                 <FormButton>Login</FormButton>

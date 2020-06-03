@@ -12,13 +12,13 @@ import Login from './pages/Login';
 import './App.scss';
 
 function App() {
-  const auth = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <>
       <Header />
       <Main>
-        {!auth.isLoggedIn
+        {!isLoggedIn
           ? (
             <Switch>
               <Route exact path="/" component={Home} />

@@ -7,10 +7,10 @@ import App from './App';
 import './index.scss';
 
 ReactDOM.render(
-  <Router>
-    <AuthProvider>
+  <AuthProvider>
+    <Router>
       <App />
-    </AuthProvider>
-  </Router>,
+    </Router>
+  </AuthProvider>,
   document.getElementById('root')
 );
